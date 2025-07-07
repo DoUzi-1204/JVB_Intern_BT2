@@ -254,13 +254,12 @@ function determineDisplayMonth() {
   return currentDate;
 }
 
-// --------Hiển thị giao diện tháng với scroll vô hạn-------
+// --------Hiển thị giao diện thán---------
 function renderMonthView(date) {
   currentDate = new Date(date);
   updateHeader();
   initializeInfiniteScroll();
 
-  // Setup scroll event listener
   monthView.removeEventListener("scroll", handleScroll);
   monthView.addEventListener("scroll", handleScroll);
 }
@@ -290,7 +289,7 @@ function handleScroll() {
     currentDate = newDisplayMonth;
     updateHeader();
   }
-  // Cập nhật màu mờ/sáng dựa trên tháng hiển thị hiện tại
+
   document.querySelectorAll(".week-row").forEach((weekEl, weekIndex) => {
     const cells = weekEl.querySelectorAll(".calendar-cell");
     cells.forEach((cell, i) => {
@@ -614,12 +613,10 @@ function scrollToMonth(targetDate) {
     addWeekToBottom();
   }
 
-  //  Cập nhật lại toàn bộ data-week-index để đảm bảo khớp
   Array.from(monthView.children).forEach((child, index) => {
     child.dataset.weekIndex = index;
   });
 
-  // 🔍 Tìm tuần đầu tiên chứa ngày 1 của tháng
   const firstWeekIndex = weeks.findIndex((week) =>
     week.some(
       (day) =>
@@ -630,7 +627,6 @@ function scrollToMonth(targetDate) {
   );
 
   if (firstWeekIndex !== -1) {
-    //  Cuộn dòng đầu tiên của tháng lên đầu khung
     const weekElements = Array.from(monthView.children);
     const firstWeekEl = weekElements[firstWeekIndex];
     if (firstWeekEl) {
