@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dark Calendar Picker</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="calendar-container">
+      <!-- Header -->
+      <div class="calendar-header">
+        <div class="calendar-header-top">
+          <span id="full-date">Tuesday, July 1, 2025</span>
+          <div class="dropdown-icon">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 22 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6 9L12 15L18 9"
+                stroke="white"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        </div>
+        <div class="calendar-header-controls">
+          <div class="header-button">
+            <span id="header-title">July 2025</span>
+            <span class="nav-button" id="prev">▲</span>
+            <span class="nav-button" id="next">▼</span>
+          </div>
+          <div class="weekday-header" id="weekday-header">
+            <span>Su</span><span>Mo</span><span>Tu</span><span>We</span
+            ><span>Th</span><span>Fr</span><span>Sa</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Views -->
+      <div class="calendar-body" id="month-view"></div>
+      <div class="calendar-body hidden" id="year-view"></div>
+      <div class="calendar-body hidden" id="decade-view"></div>
+
+      <!-- Focus Timer -->
+<div class="calendar-focus">
+  <div class="focus-controls">
+    <button id="minus-btn">−</button>
+    <span id="countdown-display">30 mins</span>
+    <button id="plus-btn">+</button>
+  </div>
+
+  <div class="focus-actions">
+    <button id="focus-btn"><i class="fa fa-play"></i> Focus</button>
+    <div id="focus-running" class="hidden">
+      <button id="reset-btn" title="Reset">
+        <i class="fa fa-rotate-right"></i>
+      </button>
+      <button id="pause-btn" title="Pause/Continue">
+        <i class="fa fa-pause"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+    <script src="script.js"></script>
+  </body>
+</html>
