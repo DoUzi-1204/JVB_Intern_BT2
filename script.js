@@ -117,11 +117,9 @@ function initializeInfiniteScroll() {
   weeks = [];
   monthView.innerHTML = "";
 
-  // Start from current month's first week
   scrollStartDate = getWeekStart(currentDate);
 
-  // Generate initial weeks with larger buffer for unlimited scroll
-  const totalWeeks = 30; // Initial buffer
+  const totalWeeks = 30;
   const middleIndex = Math.floor(totalWeeks / 2);
 
   for (let i = -middleIndex; i < totalWeeks - middleIndex; i++) {
@@ -135,7 +133,6 @@ function initializeInfiniteScroll() {
 
   currentWeekIndex = middleIndex;
 
-  // Scroll to current week
   const currentWeekElement = monthView.querySelector(
     `[data-week-index="${currentWeekIndex}"]`
   );
@@ -154,7 +151,6 @@ function addWeekToTop() {
   const newWeekElement = createWeekElement(newWeekData, 0);
   monthView.insertBefore(newWeekElement, monthView.firstChild);
 
-  // Update week indices
   Array.from(monthView.children).forEach((child, index) => {
     child.dataset.weekIndex = index;
   });
@@ -172,22 +168,19 @@ function addWeekToBottom() {
   const newWeekElement = createWeekElement(newWeekData, weeks.length - 1);
   monthView.appendChild(newWeekElement);
 
-  // Update week indices
   Array.from(monthView.children).forEach((child, index) => {
     child.dataset.weekIndex = index;
   });
 }
 
 function removeExcessWeeks() {
-  // Keep a larger buffer to prevent scroll limitations
-  const maxWeeks = 60; // Increased buffer
+  const maxWeeks = 60;
 
   if (weeks.length > maxWeeks) {
     const excess = weeks.length - maxWeeks;
     const excessTop = Math.floor(excess / 2);
     const excessBottom = excess - excessTop;
 
-    // Only remove if we have too many weeks
     if (excessTop > 0) {
       for (let i = 0; i < excessTop; i++) {
         weeks.shift();
@@ -203,14 +196,12 @@ function removeExcessWeeks() {
       }
     }
 
-    // Update week indices
     Array.from(monthView.children).forEach((child, index) => {
       child.dataset.weekIndex = index;
     });
   }
 }
 
-// Windows Date Picker style month determination
 function determineDisplayMonth() {
   const monthCount = {};
   const viewTop = monthView.scrollTop;
@@ -281,7 +272,6 @@ function handleScroll() {
   const scrollHeight = monthView.scrollHeight;
   const clientHeight = monthView.clientHeight;
 
-  // Add weeks when approaching edges
   if (scrollTop < clientHeight * 2) {
     for (let i = 0; i < 3; i++) addWeekToTop();
   }
@@ -290,10 +280,8 @@ function handleScroll() {
     for (let i = 0; i < 3; i++) addWeekToBottom();
   }
 
-  // Remove excess weeks
   removeExcessWeeks();
 
-  // Update header title based on Windows Date Picker logic
   const newDisplayMonth = determineDisplayMonth();
   if (
     newDisplayMonth.getFullYear() !== currentDate.getFullYear() ||
@@ -596,7 +584,7 @@ nextBtn.onclick = () => {
       currentDate.getMonth() + 1,
       1
     );
-    scrollToMonth(target); // currentDate sẽ được cập nhật trong scrollToMonth
+    scrollToMonth(target);
   } else if (currentView === "year") {
     currentDate.setFullYear(currentDate.getFullYear() + 1);
     switchView("year");
@@ -668,7 +656,7 @@ function scrollToMonth(targetDate) {
             }
           });
         });
-      }, 50); // nhỏ hơn để đảm bảo DOM đã cập nhật
+      }, 50);
     }
   }
 }
@@ -682,7 +670,7 @@ scrollToMonth(currentDate);
 
 // focus
 
-let duration = 30 * 60; // 30 phút ban đầu (tính bằng giây)
+let duration = 30 * 60;
 let remainingTime = duration;
 let focusStarted = false;
 let timerInterval = null;
@@ -728,7 +716,6 @@ plusBtn.addEventListener("click", () => {
   }
 });
 
-// Bắt đầu đếm ngược
 focusBtn.addEventListener("click", () => {
   if (focusStarted) return;
 
@@ -741,7 +728,6 @@ focusBtn.addEventListener("click", () => {
   startCountdown();
 });
 
-// Bắt đầu đếm ngược
 function startCountdown() {
   updateCountdownDisplay();
 
