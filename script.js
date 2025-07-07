@@ -626,7 +626,7 @@ function scrollToMonth(targetDate) {
     addWeekToBottom();
   }
 
-  // 🔄 Cập nhật lại toàn bộ data-week-index để đảm bảo khớp
+  //  Cập nhật lại toàn bộ data-week-index để đảm bảo khớp
   Array.from(monthView.children).forEach((child, index) => {
     child.dataset.weekIndex = index;
   });
@@ -642,7 +642,7 @@ function scrollToMonth(targetDate) {
   );
 
   if (firstWeekIndex !== -1) {
-    // ✅ Cuộn dòng đầu tiên của tháng lên đầu khung
+    //  Cuộn dòng đầu tiên của tháng lên đầu khung
     const weekElements = Array.from(monthView.children);
     const firstWeekEl = weekElements[firstWeekIndex];
     if (firstWeekEl) {
@@ -779,5 +779,4 @@ pauseBtn.addEventListener("click", () => {
   pauseBtn.textContent = isPaused ? "▶" : "∥";
 });
 
-// Gọi lần đầu để hiển thị "30 mins"
 updateCountdownDisplay();
