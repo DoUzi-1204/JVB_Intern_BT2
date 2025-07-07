@@ -13,7 +13,6 @@ let selectedDate = new Date();
 let currentView = "month";
 const today = new Date();
 
-// Variables for infinite scrolling
 let weeks = [];
 let currentWeekIndex = 0;
 let isScrolling = false;
